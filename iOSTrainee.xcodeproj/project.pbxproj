@@ -15,6 +15,8 @@
 		C61F991428DC95BF004FCAFF /* SinglePostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F991328DC95BF004FCAFF /* SinglePostModel.swift */; };
 		C61F991628DC95DF004FCAFF /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F991528DC95DF004FCAFF /* PostsModel.swift */; };
 		C61F991928DC9681004FCAFF /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F991828DC9681004FCAFF /* NetworkManager.swift */; };
+		C61F991C28DC96DF004FCAFF /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F991B28DC96DF004FCAFF /* MainViewController.swift */; };
+		C61F991E28DC9E9A004FCAFF /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F991D28DC9E9A004FCAFF /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +30,8 @@
 		C61F991328DC95BF004FCAFF /* SinglePostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SinglePostModel.swift; sourceTree = "<group>"; };
 		C61F991528DC95DF004FCAFF /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		C61F991828DC9681004FCAFF /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		C61F991B28DC96DF004FCAFF /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		C61F991D28DC9E9A004FCAFF /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +64,7 @@
 		C61F98FD28DC957A004FCAFF /* iOSTrainee */ = {
 			isa = PBXGroup;
 			children = (
+				C61F991A28DC96BF004FCAFF /* ViewControllers */,
 				C61F991728DC966F004FCAFF /* NetworkManager */,
 				C61F991228DC95B7004FCAFF /* Models */,
 				C61F98FE28DC957A004FCAFF /* AppDelegate.swift */,
@@ -87,6 +92,15 @@
 				C61F991828DC9681004FCAFF /* NetworkManager.swift */,
 			);
 			path = NetworkManager;
+			sourceTree = "<group>";
+		};
+		C61F991A28DC96BF004FCAFF /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				C61F991B28DC96DF004FCAFF /* MainViewController.swift */,
+				C61F991D28DC9E9A004FCAFF /* DetailsViewController.swift */,
+			);
+			path = ViewControllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -159,8 +173,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C61F991C28DC96DF004FCAFF /* MainViewController.swift in Sources */,
 				C61F991928DC9681004FCAFF /* NetworkManager.swift in Sources */,
 				C61F991628DC95DF004FCAFF /* PostsModel.swift in Sources */,
+				C61F991E28DC9E9A004FCAFF /* DetailsViewController.swift in Sources */,
 				C61F990328DC957A004FCAFF /* ViewController.swift in Sources */,
 				C61F991428DC95BF004FCAFF /* SinglePostModel.swift in Sources */,
 				C61F98FF28DC957A004FCAFF /* AppDelegate.swift in Sources */,
