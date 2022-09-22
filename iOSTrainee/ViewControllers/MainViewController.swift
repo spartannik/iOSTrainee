@@ -82,7 +82,7 @@ final class MainViewController: UIViewController {
             }),
             
             UIAction(title: "Sorting by default", image: UIImage(systemName: "heart"), handler: { [unowned self] _ in
-                self.posts?.sort(by: { $0.postID > $1.postID})
+                self.posts?.sort(by: { $0.postID > $1.postID })
                 self.mainTableView.reloadData()
                 self.scrollToTop()
             }),
@@ -92,10 +92,10 @@ final class MainViewController: UIViewController {
         let menu = UIMenu(title: "Select a sorting method", children: [items])
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "filterbutton"), primaryAction: nil, menu: menu)
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2274509804, green: 0.3254901961, blue: 0.3647058824, alpha: 1)
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [
-            NSAttributedString.Key.font: UIFont.systemFont(ofSize: 20) ,
-            NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2274509804, green: 0.3254901961, blue: 0.3647058824, alpha: 1)]
+            NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20) ,
+            NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
     }
     
     //MARK: - TableView Scroll To Top
