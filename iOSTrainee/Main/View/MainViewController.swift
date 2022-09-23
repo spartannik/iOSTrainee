@@ -7,12 +7,17 @@
 
 import UIKit
 
+protocol MainViewControllerInput {
+    func showPosts(posts: PostsModel)
+}
+
 final class MainViewController: UIViewController {
     
-    private var networkManager = NetworkManager()
     private var url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json")
     private var posts: [Post]?
-    
+
+    var presenter: PresenterProtocol?
+
     //MARK: - TableView
     private var mainTableView: UITableView!
     
@@ -29,15 +34,8 @@ final class MainViewController: UIViewController {
         view.backgroundColor = .white
         configureNavigationBar()
         configureActivityIndicator()
-        
-        networkManager.fetchData(url: url, type: PostsModel.self) { posts in
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.posts = posts.posts
-                self.configureTableView()
-                self.activityIndicator.stopAnimating()
-            }
-        }
+
+        presenter?.viewDidLoad()
     }
     
     //MARK: - TableView
@@ -128,10 +126,25 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let detailsViewController = DetailsViewController()
+
         guard let id = posts?[indexPath.row].postID else { return }
+
         let url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(id).json")
         detailsViewController.singlePostUrl = url
+
         navigationController?.pushViewController(detailsViewController, animated: true)
+
         tableView.deselectRow(at: indexPath, animated: true)
     }
+}
+
+
+extension MainViewController: MainViewControllerInput {
+
+    func showPosts(posts: PostsModel) {
+        self.posts = posts.posts
+        self.configureTableView()
+        self.activityIndicator.stopAnimating()
+    }
+
 }

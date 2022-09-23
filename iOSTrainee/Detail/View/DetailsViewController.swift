@@ -9,7 +9,6 @@ import UIKit
 
 final class DetailsViewController: UIViewController {
     
-    private var networkManager = NetworkManager()
     var singlePostUrl: URL?
     
     //MARK: - UI
@@ -73,13 +72,14 @@ final class DetailsViewController: UIViewController {
         configureScrollView()
         layout()
         activityIndicator.startAnimating()
-        
-        networkManager.fetchData(url: singlePostUrl, type: SinglePostModel.self) { singlePost in
-            DispatchQueue.main.async { [weak self] in
-                self?.updateDetailsViewController(with: singlePost)
-                self?.activityIndicator.stopAnimating()
-            }
-        }
+
+     // в презентер
+//        networkManager.fetchData(url: singlePostUrl, type: SinglePostModel.self) { singlePost in
+//            DispatchQueue.main.async { [weak self] in
+//                self?.updateDetailsViewController(with: singlePost)
+//                self?.activityIndicator.stopAnimating()
+//            }
+//        }
     }
     
     //MARK: - NavigationBar
