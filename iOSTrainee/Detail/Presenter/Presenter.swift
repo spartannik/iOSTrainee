@@ -35,4 +35,11 @@ final class DetailsPresenter: DetailsPresenterProtocol {
             })
         }
     }
+                       
+         networkManager.fetchData(url: singlePostUrl, type: SinglePostModel.self) { singlePost in
+            DispatchQueue.main.async { [weak self] in
+                self?.updateDetailsViewController(with: singlePost)
+                self?.activityIndicator.stopAnimating()
+            }
+        }
 }
