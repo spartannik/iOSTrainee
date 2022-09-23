@@ -7,9 +7,17 @@
 
 import UIKit
 
+protocol DetailsViewControllerInput {
+    func showPosts(posts: SinglePostModel)
+}
+
 final class DetailsViewController: UIViewController {
     
-    var singlePostUrl: URL?
+    private var url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(postId).json")
+    private var posts: [SinglePost]?
+
+    var presenter: DetailsPresenterProtocol?
+
     
     //MARK: - UI
     private let activityIndicator: UIActivityIndicatorView = {

@@ -19,6 +19,7 @@
 		C61F992228DC9F00004FCAFF /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C61F992128DC9F00004FCAFF /* CustomTableViewCell.swift */; };
 		C6AE025428DDF41F00552DA9 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE025328DDF41F00552DA9 /* Presenter.swift */; };
 		C6AE025628DDF4F300552DA9 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE025528DDF4F300552DA9 /* Constants.swift */; };
+		C6AE025828DDF6E200552DA9 /* Presenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6AE025728DDF6E200552DA9 /* Presenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		C61F992128DC9F00004FCAFF /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		C6AE025328DDF41F00552DA9 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 		C6AE025528DDF4F300552DA9 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C6AE025728DDF6E200552DA9 /* Presenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Presenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 		C6AE025128DDF3BA00552DA9 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				C6AE025728DDF6E200552DA9 /* Presenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -244,6 +247,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C6AE025428DDF41F00552DA9 /* Presenter.swift in Sources */,
+				C6AE025828DDF6E200552DA9 /* Presenter.swift in Sources */,
 				C61F991C28DC96DF004FCAFF /* MainViewController.swift in Sources */,
 				C61F991928DC9681004FCAFF /* NetworkManager.swift in Sources */,
 				C61F992228DC9F00004FCAFF /* CustomTableViewCell.swift in Sources */,
