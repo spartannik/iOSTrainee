@@ -46,7 +46,7 @@ final class DetailsViewController: UIViewController {
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 0
-        label.font = .systemFont(ofSize: 14)
+        label.font = .systemFont(ofSize: 16)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()

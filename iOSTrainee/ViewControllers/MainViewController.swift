@@ -92,7 +92,7 @@ final class MainViewController: UIViewController {
         let menu = UIMenu(title: "Select a sorting method", children: [items])
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "", image: UIImage(named: "filterbutton"), primaryAction: nil, menu: menu)
-        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+        navigationItem.rightBarButtonItem?.tintColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20) ,
             NSAttributedString.Key.foregroundColor: #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)]
