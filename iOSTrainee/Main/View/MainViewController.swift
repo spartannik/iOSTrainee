@@ -8,13 +8,13 @@
 import UIKit
 
 protocol MainViewControllerInput {
-    func showPosts(posts: PostsModel)
+    func showPosts(posts: [PostEntity])
+    func showAlertWith(text: String)
 }
 
 final class MainViewController: UIViewController {
-    
-    private var url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/main.json")
-    private var posts: [Post]?
+
+    private var posts: [PostEntity]?
 
     var presenter: PresenterProtocol?
 
@@ -44,6 +44,7 @@ final class MainViewController: UIViewController {
         mainTableView.separatorStyle = .none
         mainTableView.delegate = self
         mainTableView.dataSource = self
+        mainTableView.estimatedRowHeight = 200
         mainTableView.register(CustomTableViewCell.self, forCellReuseIdentifier: CustomTableViewCell.id)
         mainTableView.translatesAutoresizingMaskIntoConstraints = false
         
@@ -112,39 +113,60 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.id)
                 as? CustomTableViewCell else { return UITableViewCell() }
-        
-        if let post = posts?[indexPath.row] {
-            cell.setupCell(with: post)
+
+        guard let post = posts?[indexPath.row] else {
+            return UITableViewCell()
         }
-        
+
+        cell.setupCell(with: post)
+
         cell.handleState = {
             tableView.beginUpdates()
             tableView.endUpdates()
         }
+
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let id = posts?[indexPath.row].postID else { return }
+        let details = assemblyDetailsViewCotroller(postId: "\(id)")
+        navigationController?.pushViewController(details, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+
+}
+
+extension MainViewController {
+
+    private func assemblyDetailsViewCotroller(postId: String) -> UIViewController {
+        let networkService = NetworkService()
+        let presenter = DetailsPresenter(networkService: networkService)
+
         let detailsViewController = DetailsViewController()
 
-        guard let id = posts?[indexPath.row].postID else { return }
+        detailsViewController.presenter = presenter
+        detailsViewController.postId = postId
 
-        let url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(id).json")
-        detailsViewController.singlePostUrl = url
+        presenter.view = detailsViewController
 
-        navigationController?.pushViewController(detailsViewController, animated: true)
-
-        tableView.deselectRow(at: indexPath, animated: true)
+        return detailsViewController
     }
 }
 
-
 extension MainViewController: MainViewControllerInput {
 
-    func showPosts(posts: PostsModel) {
-        self.posts = posts.posts
+    func showPosts(posts: [PostEntity]) {
+        self.posts = posts
         self.configureTableView()
         self.activityIndicator.stopAnimating()
     }
 
+    func showAlertWith(text: String) {
+         let alertController = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }

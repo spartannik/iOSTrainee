@@ -42,7 +42,6 @@ final class NetworkService: NetworkServiceProtocol {
         }
     }
 
-
     private func getRequest(URLString: String, completion: @escaping ResultCompletion) {
         guard let url = URL(string: URLString) else { return }
         let task = URLSession.shared.dataTask(with: url) { data, response, error in

@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let viewController = MainViewController()
 
         let networkService = NetworkService()
-        let presenter = Presenter(networkService: networkService)
+        let presenter = MainPresenter(networkService: networkService)
 
         viewController.presenter = presenter
         presenter.view = viewController

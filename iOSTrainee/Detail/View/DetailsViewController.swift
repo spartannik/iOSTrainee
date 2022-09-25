@@ -8,16 +8,16 @@
 import UIKit
 
 protocol DetailsViewControllerInput {
-    func showPosts(posts: SinglePostModel)
+    func showPost(post: SinglePostModel)
+    func showAlertWith(text: String)
 }
 
 final class DetailsViewController: UIViewController {
     
-    private var url = URL(string: "https://raw.githubusercontent.com/anton-natife/jsons/master/api/posts/\(postId).json")
     private var posts: [SinglePost]?
+    var postId: String = ""
 
     var presenter: DetailsPresenterProtocol?
-
     
     //MARK: - UI
     private let activityIndicator: UIActivityIndicatorView = {
@@ -76,18 +76,14 @@ final class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
+
         configureNavigationBar()
         configureScrollView()
         layout()
         activityIndicator.startAnimating()
 
-     // в презентер
-//        networkManager.fetchData(url: singlePostUrl, type: SinglePostModel.self) { singlePost in
-//            DispatchQueue.main.async { [weak self] in
-//                self?.updateDetailsViewController(with: singlePost)
-//                self?.activityIndicator.stopAnimating()
-//            }
-//        }
+        presenter?.viewDidLoad(postId: postId)
+
     }
     
     //MARK: - NavigationBar
@@ -162,4 +158,21 @@ final class DetailsViewController: UIViewController {
             dateLabel.heightAnchor.constraint(equalToConstant: 20),
         ])
     }
+}
+
+extension DetailsViewController: DetailsViewControllerInput {
+
+    func showPost(post: SinglePostModel) {
+        updateDetailsViewController(with: post)
+        activityIndicator.stopAnimating()
+    }
+
+    func showAlertWith(text: String) {
+        let alertController = UIAlertController(title: nil, message: text, preferredStyle: .alert)
+        let defaultAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+
+        alertController.addAction(defaultAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
 }

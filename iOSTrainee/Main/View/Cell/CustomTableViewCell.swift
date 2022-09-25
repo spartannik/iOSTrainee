@@ -28,7 +28,8 @@ final class CustomTableViewCell: UITableViewCell {
     }
     
     private var descriptionState = DescriptionState.collapse
-    
+    lazy var buttonHeightConstraint = previewButton.heightAnchor.constraint(equalToConstant: 0)
+
     //MARK: - UI
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -88,31 +89,21 @@ final class CustomTableViewCell: UITableViewCell {
     }
     
     //MARK: - Setup Cell
-    func setupCell(with p: Post) {
-        let startDate = Date()
-        let endDateTimeInterval = TimeInterval(p.timeshamp)
-        let endDate = Date(timeIntervalSince1970: endDateTimeInterval)
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        let endDateString = dateFormatter.string(from: endDate)
-        
-        if let endDate = dateFormatter.date(from: endDateString) {
-            let components = Calendar.current.dateComponents([.day], from: endDate, to: startDate)
-            dateLabel.text = "\(components.day!) days ago"
-        }
-        
+    func setupCell(with p: PostEntity) {
+ 
+        dateLabel.text = p.timestampValue
         titleLabel.text = p.title
         previewLabel.text = p.previewText
         likesLabel.text = "❤️ \(p.likesCount)"
-        
-        if previewLabel.text?.count ?? 0 <= 100 && previewLabel.text?.count ?? 0 > 50 {
-            previewButton.removeFromSuperview()
-            contentView.heightAnchor.constraint(equalToConstant: 125).isActive = true
-        } else if previewLabel.text?.count ?? 0 <= 50 {
-            previewButton.removeFromSuperview()
-            contentView.heightAnchor.constraint(equalToConstant: 100).isActive = true
+
+        if p.previewText.count <= 120 {
+            previewButton.isHidden = true
+            self.buttonHeightConstraint.constant = 0
+        } else {
+            previewButton.isHidden = false
+            self.buttonHeightConstraint.constant = 50
         }
+
     }
     
     //MARK: - Cell Init
@@ -152,8 +143,9 @@ final class CustomTableViewCell: UITableViewCell {
             previewButton.topAnchor.constraint(equalTo: likesLabel.bottomAnchor, constant: 20),
             previewButton.leadingAnchor.constraint(equalTo: titleLabel.leadingAnchor),
             previewButton.trailingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
-            previewButton.heightAnchor.constraint(equalToConstant: 50),
+            buttonHeightConstraint,
             previewButton.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }
 }
+
