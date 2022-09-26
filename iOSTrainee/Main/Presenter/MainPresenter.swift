@@ -1,5 +1,5 @@
 //
-//  Presenter.swift
+//  MainPresenter.swift
 //  iOSTrainee
 //
 //  Created by Nikita Yashchenko on 23.09.2022.

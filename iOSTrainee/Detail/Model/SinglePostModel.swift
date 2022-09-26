@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SinglePostModel.swift
 //  iOSTrainee
 //
 //  Created by Nikita Yashchenko on 22.09.2022.
